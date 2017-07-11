@@ -1,8 +1,12 @@
 package ru.dodofm_test.dodofm_t;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -22,14 +26,27 @@ import android.widget.SeekBar;
 
 import com.viewpagerindicator.LinePageIndicator;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView mImPlay;
     private ImageView mImPause;
+
+    ImageView mImUpOn;
+    ImageView mImUpOff;
+    ImageView mImDownOn;
+    ImageView mImDownOff;
+
+    ImageView mImAlbum;
+
+    BannerPagerAdapter mBannerPagerAdapter;
+    ViewPager mViewPager;
+    LinePageIndicator mLinePageIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +79,29 @@ public class MainActivity extends AppCompatActivity
         ((ImageView) page.findViewById(R.id.imBanner)).setImageResource(R.drawable.slide_three);
         pages.add(page);
 
-        BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(pages);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPager.setAdapter(bannerPagerAdapter);
-        viewPager.setCurrentItem(0);
+        mBannerPagerAdapter = new BannerPagerAdapter(pages);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager.setAdapter(mBannerPagerAdapter);
+        mViewPager.setCurrentItem(0);
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
 
-        LinePageIndicator linePageIndicator = (LinePageIndicator) findViewById(R.id.linePageIndicator);
-        linePageIndicator.setViewPager(viewPager);
+        mLinePageIndicator = (LinePageIndicator) findViewById(R.id.linePageIndicator);
+        mLinePageIndicator.setViewPager(mViewPager);
 
         mImPlay = (ImageView) findViewById(R.id.imPlay);
         mImPause = (ImageView) findViewById(R.id.imPause);
@@ -85,16 +118,44 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-//        int color = ContextCompat.getColor(getContext(), R.color.my_color);
-//        seekBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP); // полоска
-//        seekBar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_ATOP); // кругляшок
+        mImUpOn = (ImageView) findViewById(R.id.imUpOn);
+        mImUpOff = (ImageView) findViewById(R.id.imUpOff);
+        mImDownOn = (ImageView) findViewById(R.id.imDownOn);
+        mImDownOff = (ImageView) findViewById(R.id.imDownOff);
+        mImUpOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                likeOff();
+            }
+        });
+        mImUpOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                likeOn();
+            }
+        });
+        mImDownOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dislikeOff();
+            }
+        });
+        mImDownOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dislikeOn();
+            }
+        });
+
+        mImAlbum = (ImageView) findViewById(R.id.imAlbum);
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         int color = ContextCompat.getColor(this, R.color.colorPrimary);
         //seekBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         seekBar.getThumb().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
 
-
+        changeBannerTimer.start();
+        changeAlbumImageTimer.start();
     }
 
     private void play() {
@@ -105,6 +166,26 @@ public class MainActivity extends AppCompatActivity
     private void pause() {
         mImPause.setVisibility(View.INVISIBLE);
         mImPlay.setVisibility(View.VISIBLE);
+    }
+
+    private void likeOn() {
+        mImUpOff.setVisibility(View.INVISIBLE);
+        mImUpOn.setVisibility(View.VISIBLE);
+    }
+
+    private void likeOff() {
+        mImUpOn.setVisibility(View.INVISIBLE);
+        mImUpOff.setVisibility(View.VISIBLE);
+    }
+
+    private void dislikeOn() {
+        mImDownOff.setVisibility(View.INVISIBLE);
+        mImDownOn.setVisibility(View.VISIBLE);
+    }
+
+    private void dislikeOff() {
+        mImDownOn.setVisibility(View.INVISIBLE);
+        mImDownOff.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -146,4 +227,55 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private Thread changeBannerTimer = new Thread() {
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    sleep(10000);
+                    int current = mViewPager.getCurrentItem();
+                    current++;
+                    if (current >= mBannerPagerAdapter.getCount()) {
+                        current = 0;
+                    }
+                    final int currentItem = current;
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mViewPager.setCurrentItem(currentItem);
+                            //mLinePageIndicator.setCurrentItem(currentItem);
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    private Thread changeAlbumImageTimer = new Thread() {
+        @Override
+        public void run() {
+            AssetManager am = MainActivity.this.getAssets();
+            try {
+                while (true) {
+                    String[] albums = am.list("albums");
+                    Random r = new Random();
+                    int current = r.nextInt(albums.length);
+                    InputStream stream = am.open("albums/" + albums[current]);
+                    final Drawable image = Drawable.createFromStream(stream, "temp");
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mImAlbum.setImageDrawable(image);
+                        }
+                    });
+                    sleep(10000);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 }

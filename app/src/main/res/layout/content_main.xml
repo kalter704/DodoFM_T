@@ -14,12 +14,14 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/relativeLayout5"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
@@ -40,35 +42,6 @@
             app:strokeWidth="2dp"
             app:unselectedColor="@color/colorUnselectedPage"/>
 
-        <ImageView
-            android:id="@+id/imPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linePageIndicator"
-            app:srcCompat="@drawable/ic_play"/>
-
-        <ImageView
-            android:id="@+id/imPause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:visibility="invisible"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linePageIndicator"
-            app:srcCompat="@drawable/ic_pause"/>
-
         <TextView
             android:id="@+id/tvSongName"
             android:layout_width="wrap_content"
@@ -77,13 +50,13 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Song Name"
             android:textColor="@color/colorTextAboutActivity"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imPause"
+            app:layout_constraintTop_toBottomOf="@+id/imAlbum"
             tools:text="Название песни"/>
 
         <RelativeLayout
@@ -94,11 +67,11 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSongName">
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
 
             <LinearLayout
                 android:id="@+id/linearLayoutSeekBar"
@@ -145,6 +118,89 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSongName"
+            app:layout_constraintHorizontal_bias="0.0">
+
+            <ImageView
+                android:id="@+id/imUpOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/imPlay"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_thumb_up_on"/>
+
+            <ImageView
+                android:id="@+id/imDownOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="24dp"
+                android:layout_toStartOf="@+id/imPlay"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_thumb_down_on"/>
+
+            <ImageView
+                android:id="@+id/imUpOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/imPlay"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_thumb_up_off"/>
+
+            <ImageView
+                android:id="@+id/imDownOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="24dp"
+                android:layout_toStartOf="@+id/imPlay"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_thumb_down_off"/>
+
+            <ImageView
+                android:id="@+id/imPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_play_2"/>
+
+            <ImageView
+                android:id="@+id/imPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_pause_2"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imAlbum"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linePageIndicator"
+            app:srcCompat="@drawable/default_pizza"/>
 
     </android.support.constraint.ConstraintLayout>
 
