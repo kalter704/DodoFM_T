@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DodoFM_T</string>
+    <string name="title_activity_main">DODO FM</string>
+    <string name="title_activity_about">О проекте</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="about_activity_title1">Кто мы?</string>
+    <string name="about_activity_title2">Что звучит?</string>
+    <string name="about_activity_title3">Где послушать?</string>
+
+    <string name="about_activity_text1">
+        «DODO FM» - это уникальное интернет-радио\n
+        сети пиццерий «ДОДО Пицца».\n
+        Нам нравится хорошая музыка,\n
+        и мы рады ей поделиться.
+    </string>
+    <string name="about_activity_text2">
+        Море талантливых исполнителей!\n
+        Возможно, даже из вашего города!
+    </string>
+    <string name="about_activity_text3">
+        Слушай нас во всех пиццериях «ДОДО Пицца»,\n
+        на сайте DODOFM.ru и, конечно же,\n
+        здесь - в приложении DODO FM
+    </string>
+
+</resources>

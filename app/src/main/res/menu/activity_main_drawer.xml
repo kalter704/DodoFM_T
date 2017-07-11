@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="Рассказать друзьям"/>
+        <item
+            android:id="@+id/nav_star"
+            android:icon="@drawable/ic_star"
+            android:title="Оценить приложение">
+        </item>
+        <item
+            android:id="@+id/nav_offline"
+            android:icon="@drawable/ic_location"
+            android:title="Где послушать оффлайн"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info"
+            android:title="О проекте"/>
+        <item
+            android:id="@+id/nav_vk"
+            android:icon="@drawable/ic_vk"
+            android:title="ВК"/>
+        <item
+            android:id="@+id/nav_fb"
+            android:icon="@drawable/ic_fb"
+            android:title="FB"/>
+        <item
+            android:id="@+id/nav_site_dodo_fm"
+            android:icon="@drawable/ic_music"
+            android:title="Сайт DODO FM"/>
+        <item
+            android:id="@+id/nav_site_dodo_pizza"
+            android:icon="@drawable/ic_pizza"
+            android:title="Сайт DODO ПИЦЦА"/>
+    </group>
+
+</menu>

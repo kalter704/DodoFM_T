@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryForSplash">#FFFFFF</color>
+    <color name="colorPrimaryDarkForSplash">#FFFFFF</color>
+    <color name="colorAccentForSplash">#FFFFFF</color>
+
+    <color name="colorPrimary">#F7931E</color>
+    <color name="colorPrimaryDark">#F7931E</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="colorLine">#F7931E</color>
+
+    <color name="colorNavDrawerText">#494949</color>
+
+    <color name="colorTextTitleAboutActivity">#F7931E</color>
+    <color name="colorTextAboutActivity">#494949</color>
+
+    <color name="colorSelectedPage">#F7931E</color>
+    <color name="colorUnselectedPage">#494949</color>
+
+    <color name="colorSecond">#494949</color>
+
+</resources>
