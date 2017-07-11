@@ -26,4 +26,11 @@
         здесь - в приложении DODO FM
     </string>
 
+
+    <string name="subtext_play">Мы уже в эфире!</string>
+    <string name="subtext_ready_to_play">Мы уже в эфире!</string>
+
+
+    <string name="error_network">Нет соединения с Интернетом!</string>
+
 </resources>

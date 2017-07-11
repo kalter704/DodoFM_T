@@ -20,4 +20,8 @@
 
     <color name="colorSecond">#494949</color>
 
+    <color name="snackErrorNetworkColor">#d9000000</color>
+    <color name="snackColor">#F7931E</color>
+    <color name="snackTextColor">#FFFFFF</color>
+
 </resources>
